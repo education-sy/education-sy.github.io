@@ -27,7 +27,7 @@ if (isset($_POST['save'])){
         $_SESSION['message'] = "Item has been saved!";
         $_SESSION['msg_type'] = "success";
 
-        header("location: index.php");
+        header("location: index.html");
 
 }
 
@@ -47,7 +47,7 @@ if (isset($_POST['save'])){
         $_SESSION['message'] = "Item has been saved!";
         $_SESSION['msg_type'] = "success";
 
-        header("location: index.php");
+        header("location: index.html");
 
 }
 */
@@ -62,7 +62,7 @@ if (isset($_GET['delete'])){
     $_SESSION['message'] = "Item has been deleted!";
     $_SESSION['msg_type'] = "danger";
 
-        header("location: answers.php");
+        header("location: answers.html");
 
 }
 
@@ -99,7 +99,7 @@ if (isset($_POST['update'])){
    $_SESSION['message'] = "Item has been updated!";
    $_SESSION['msg_type'] = "warning";
 
-       header("location: answers.php");
+       header("location: answers.html");
 
 
     }
@@ -119,6 +119,6 @@ if (isset($_POST['update'])){
         $_SESSION['message'] = "Item has been updated!";
         $_SESSION['msg_type'] = "warning";
     
-        header("location: answers.php");
+        header("location: answers.html");
     }
     

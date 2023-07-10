@@ -38,7 +38,7 @@
 </head>
 
      <body>
-     <?php require_once 'process.php'; ?>
+     <?php require_once 'process.html'; ?>
 
 <?php
 
@@ -93,8 +93,8 @@ while ($row = $result->fetch_assoc()): ?>
 
 
     <td> 
-<a href="answers.php?edit=<?php echo $row['id']; ?>" class="btn btn-info"> Edit </a>
-<a href="process.php?delete=<?php echo $row['id']; ?>" class="btn btn-info"> Delete </a>
+<a href="answers.html?edit=<?php echo $row['id']; ?>" class="btn btn-info"> Edit </a>
+<a href="process.html?delete=<?php echo $row['id']; ?>" class="btn btn-info"> Delete </a>
 
 
 
