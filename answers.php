@@ -1,0 +1,206 @@
+<html> 
+    <!-- 
+    <head>
+         <title>PHP CRUD</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <script src="https://code.jquery.com/jquery-2.1.3.min.js"> </script> 
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
+
+<link href="css/chosen.min.css" rel="stylesheet">
+<script type="text/javascript" src="scripts/jquery-2.2.3.min.js"> </script>
+<script type="text/javascript" src="scripts/chosen.jquery.min.js"> </script>
+
+
+
+
+
+    </head>
+-->
+
+<head>
+  <title>Answers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="css/chosen.min.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+</head>
+
+     <body>
+     <?php require_once 'process.php'; ?>
+
+<?php
+
+if (isset($_SESSION['message'])): ?>
+
+<div class="alert alert-<?=$_SESSION['msg_type']?>">
+
+<?php   
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+?>
+</div>
+
+<?php endif ?>
+
+
+
+
+     <div class="container">
+
+
+    <?php
+    $mysqli = new mysqli('localhost:8111', 'root', '', 'questions-form') or die(mysqli_error($mysqli));
+$result = $mysqli->query("SELECT * FROM data") or die($mysqli->error);
+?>
+
+<div class="row justify-content-center">
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th> Curriculum </ht>
+                <th> stage </th>
+                <th> Question </th>
+                <th> Answer </th>
+
+                <th colspan="2"> Action </th>
+
+</tr>
+
+</thead>
+
+
+<?php
+while ($row = $result->fetch_assoc()): ?>
+
+<tr>
+    <td> <?php echo $row['Curriculum']; ?> </td>
+    <td> <?php echo $row['stage']; ?> </td>
+    <td> <?php echo $row['question']; ?> </td>
+    <td> <?php echo $row['answer']; ?> </td>
+
+
+    <td> 
+<a href="answers.php?edit=<?php echo $row['id']; ?>" class="btn btn-info"> Edit </a>
+<a href="process.php?delete=<?php echo $row['id']; ?>" class="btn btn-info"> Delete </a>
+
+
+
+
+    </td>
+</tr>
+
+
+
+<?php endwhile; ?>
+</table>
+</div>
+
+
+
+
+<?php
+function pre_r ( $array ){
+
+echo '<pre>';
+print_r($array);
+echo '</pre>';
+
+}
+?>
+
+
+     <div class="row justify-content-center">
+    <form action="process.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        
+
+<!-- 
+        <select class="chosen" name="animal" multiple="true" style="width:400px;">
+	<option >Choose...</option>
+	<option >jQuery</option>
+	<option selected="selected">MooTools</option>
+	<option>Prototype</option>
+	<option selected="selected">Dojo Toolkit</option>
+</select>
+
+-->
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery(".chosen").chosen();
+});
+    
+        </script>
+
+
+<div class="form-group">
+            <label> Curriculum </label>
+    <input type="text" name="Curriculum" value="<?php echo $Curriculum; ?>"  class="form-control" placeholder="enter your name">
+</div>
+
+<div class="form-group">
+            <label> stage </label>
+    <input type="text" name="stage"  value="<?php echo $stage; ?>" class="form-control" placeholder="enter your location">
+</div>
+
+<div class="form-group">
+            <label> Question </label>
+    <input type="text" name="question"  value="<?php echo $question; ?>" class="form-control">
+</div>
+
+
+
+<div class="form-group">
+            <label> Answer </label>
+    <input type="text" name="answer"  value="<?php echo $answer; ?>" class="form-control">
+</div>
+
+
+
+
+
+
+
+<div class="form-group">
+
+<?php
+if ($update == true):
+    ?>
+    <button type="submit"  class="btn btn-info" name="update"> Update </button>
+
+    <?php else: ?>
+    <button type="submit"  class="btn btn-primary" name="save"> Save </button>
+<?php endif; ?>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+ 
